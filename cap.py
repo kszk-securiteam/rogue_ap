@@ -1,10 +1,11 @@
+#!/usr/bin/env python3
 import sys
 import pyshark
 
 if len(sys.argv) == 1:
 	print('Add meg a fájlnevet!')
 else:
-	cap = pyshark.FileCapture(sys.argv[1])
+	cap = pyshark.FileCapture(sys.argv[1], display_filter='http && http.request.method == "POST"')
 	tokens = ['password', 'pw', 'pass']
 
 	for i in cap:
@@ -15,4 +16,4 @@ else:
 				print('URL:', uri, '\nData:', data, '\n')
 		except:
 			pass
-	
+
